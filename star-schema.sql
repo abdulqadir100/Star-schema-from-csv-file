@@ -3,44 +3,44 @@
 BEGIN;
 
 
-CREATE TABLE public."FactBilling"
+CREATE TABLE public."FactSales"
 (
     rowid integer NOT NULL,
-    customerid integer NOT NULL,
-    monthid integer NOT NULL,
-    billedamount integer NOT NULL,
+    date_id integer NOT NULL,
+    total_sales integer NOT NULL,
     PRIMARY KEY (rowid)
 );
 
 CREATE TABLE public."DimMonth"
 (
-    monthid integer NOT NULL,
+    date_id integer NOT NULL,
+    day_of_week integer NOT NULL,
+    weekday_name "char" NOT NULL,
     year integer NOT NULL,
     month integer NOT NULL,
-    monthname "char" NOT NULL,
+    month_name "char" NOT NULL,
     quarter integer NOT NULL,
-    quartername "char" NOT NULL,
+    quarter_name "char" NOT NULL,
     PRIMARY KEY (monthid)
 );
 
-CREATE TABLE public."DimCustomer"
+CREATE TABLE public."DimStore"
 (
-    customerid integer NOT NULL,
-    category "char" NOT NULL,
+    store_id integer NOT NULL,
     country "char" NOT NULL,
-    industry "char" NOT NULL,
-    PRIMARY KEY (customerid)
+    city "char" NOT NULL,
+    PRIMARY KEY (store_id)
 );
 
-ALTER TABLE public."FactBilling"
-    ADD FOREIGN KEY (customerid)
-    REFERENCES public."DimCustomer" (customerid)
+ALTER TABLE public."FactSales"
+    ADD FOREIGN KEY (store_id)
+    REFERENCES public."DimStore" (store_id)
     NOT VALID;
 
 
-ALTER TABLE public."FactBilling"
-    ADD FOREIGN KEY (monthid)
-    REFERENCES public."DimMonth" (monthid)
+ALTER TABLE public."FactSales"
+    ADD FOREIGN KEY (date_id)
+    REFERENCES public."DimMonth" (date_id)
     NOT VALID;
 
 END;
