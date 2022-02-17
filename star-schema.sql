@@ -7,6 +7,7 @@ CREATE TABLE public."FactSales"
 (
     rowid integer NOT NULL,
     date_id integer NOT NULL,
+    store_id integer NOT NULL,
     total_sales integer NOT NULL,
     PRIMARY KEY (rowid)
 );
