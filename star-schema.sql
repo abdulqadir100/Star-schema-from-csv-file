@@ -21,7 +21,7 @@ CREATE TABLE public."DimMonth"
     month_name "char" NOT NULL,
     quarter integer NOT NULL,
     quarter_name "char" NOT NULL,
-    PRIMARY KEY (monthid)
+    PRIMARY KEY (date_id)
 );
 
 CREATE TABLE public."DimStore"
